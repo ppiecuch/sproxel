@@ -1,24 +1,22 @@
-#-------------------------------------------------
-#
-# SPROXEL sprite-ish voxel editor
-#
-#-------------------------------------------------
 
-QT       += core gui opengl
-
-#LIBS += -lpython
-#DEFINES += SPROXEL_USE_PYTHON
+QT += core gui opengl widgets svg
 
 TARGET = sproxel
 TEMPLATE = app
 
-unix:!macx {
-  INCLUDEPATH += Imath
+INCLUDEPATH += Imath
+
+macx: {
+	INCLUDEPATH += /System/Library/Frameworks/Python.framework/Versions/2.7/Headers
+	LIBS += -L/usr/lib -lpython2.7
+	DEFINES += SPROXEL_USE_PYTHON
 }
 
-macx {
-  INCLUDEPATH += Imath
-  ICON = sproxel.icns
+unix:!macx {
+  CONFIG += link_pkgconfig
+  PKGCONFIG += python2
+  QMAKE_CXXFLAGS += -std=c++0x
+  DEFINES += SPROXEL_USE_PYTHON
 }
 
 win32 {
@@ -54,6 +52,7 @@ SOURCES += \
     Imath/ImathColorAlgo.cpp \
     Imath/ImathBox.cpp \
     Imath/IexBaseExc.cpp
+
 
 HEADERS  += \
     Foundation.h \
@@ -113,3 +112,24 @@ FORMS += \
 
 RESOURCES += \
     sproxel.qrc
+
+ICON = icons/sproxel.icns
+
+debug: DBG = dgb
+else: DBG = rel
+
+DESTDIR = workdir/$$DBG-$$[QMAKE_SPEC]/bin
+OBJECTS_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/obj
+MOC_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/ui
+UI_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/ui
+RCC_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/ui
+
+
+# deployment options:
+
+COMMON_CFG.files = distro/common
+COMMON_CFG.path = Frameworks
+QMAKE_BUNDLE_DATA += COMMON_CFG
+
+target.path += bin
+INSTALLS += target

@@ -1,4 +1,5 @@
 #ifdef SPROXEL_USE_PYTHON
+
 #include <QPlainTextEdit>
 #include <QAction>
 #include <QDir>
@@ -133,4 +134,5 @@ ConsoleWidget* get_python_console_widget()
 {
   return console;
 }
-#endif
+
+#endif // SPROXEL_USE_PYTHON

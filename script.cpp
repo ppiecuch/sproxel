@@ -1,4 +1,5 @@
 #ifdef SPROXEL_USE_PYTHON
+
 #include <QtDebug>
 #include <QFileInfo>
 #include <QDir>
@@ -82,6 +83,10 @@ void init_script(const char *exe_path)
   #ifndef _WIN32
     QString code="import sys\nsys.path.insert(0, \"";
     code.append(exe_dir.absolutePath());
+   #ifdef __APPLE__
+    code.append("\")\nsys.path.insert(0, \"");
+    code.append(exe_dir.absolutePath()+"/../../Frameworks/common");
+   #endif
     code.append("\")\nprint 'sys.path:', sys.path\n");
     PyRun_SimpleString(code.toLocal8Bit().data());
   #endif
@@ -282,4 +287,5 @@ bool run_script(const QString &fn)
     return false;
   }
 }
-#endif
+
+#endif // SPROXEL_USE_PYTHON

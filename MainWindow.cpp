@@ -78,8 +78,11 @@ MainWindow::MainWindow(const QString& initialFilename, QWidget *parent) :
 	// Toolbar
 	m_toolbar = new QToolBar("Tools", this);
 	m_toolbar->setObjectName("toolbar");
-	m_toolbar->setOrientation(Qt::Vertical);
-	addToolBar(Qt::LeftToolBarArea, m_toolbar);
+	m_toolbar->setOrientation(Qt::Horizontal);
+#ifdef Q_OS_MAC
+    m_toolbar->setIconSize(QSize(20, 20));
+#endif
+	addToolBar(Qt::TopToolBarArea, m_toolbar);
 
 
 	// Actions & Menus
@@ -317,47 +320,47 @@ MainWindow::MainWindow(const QString& initialFilename, QWidget *parent) :
 	m_toolbarActionGroup = new QActionGroup(this);
 
 	m_actToolSplat = new QAction("Splat", m_toolbarActionGroup);
-	m_actToolSplat->setIcon(QIcon(QPixmap(":/icons/splat.png")));
+	m_actToolSplat->setIcon(QIcon(QPixmap(":/icons/splat.svg")));
 	m_actToolSplat->setCheckable(true);
 	connect(m_actToolSplat, SIGNAL(toggled(bool)), this, SLOT(setToolSplat(bool)));
 
 	m_actToolReplace = new QAction("Replace", m_toolbarActionGroup);
-	m_actToolReplace->setIcon(QIcon(QPixmap(":/icons/pencil.png")));
+	m_actToolReplace->setIcon(QIcon(QPixmap(":/icons/pencil.svg")));
 	m_actToolReplace->setCheckable(true);
 	connect(m_actToolReplace, SIGNAL(toggled(bool)), this, SLOT(setToolReplace(bool)));
 
 	m_actToolFlood = new QAction("Flood", m_toolbarActionGroup);
-	m_actToolFlood->setIcon(QIcon(QPixmap(":/icons/paintBucket.png")));
+	m_actToolFlood->setIcon(QIcon(QPixmap(":/icons/paintBucket.svg")));
 	m_actToolFlood->setCheckable(true);
 	connect(m_actToolFlood, SIGNAL(toggled(bool)), this, SLOT(setToolFlood(bool)));
 
 	m_actToolDropper = new QAction("Dropper", m_toolbarActionGroup);
-	m_actToolDropper->setIcon(QIcon(QPixmap(":/icons/eyeDropper.png")));
+	m_actToolDropper->setIcon(QIcon(QPixmap(":/icons/eyeDropper.svg")));
 	m_actToolDropper->setCheckable(true);
 	connect(m_actToolDropper, SIGNAL(toggled(bool)), this, SLOT(setToolDropper(bool)));
 
 	m_actToolEraser = new QAction("Eraser", m_toolbarActionGroup);
-	m_actToolEraser->setIcon(QIcon(QPixmap(":/icons/eraser.png")));
+	m_actToolEraser->setIcon(QIcon(QPixmap(":/icons/eraser.svg")));
 	m_actToolEraser->setCheckable(true);
 	connect(m_actToolEraser, SIGNAL(toggled(bool)), this, SLOT(setToolEraser(bool)));
 
 	m_actToolSlab = new QAction("Slab", m_toolbarActionGroup);
-	m_actToolSlab->setIcon(QIcon(QPixmap(":/icons/slab.png")));
+	m_actToolSlab->setIcon(QIcon(QPixmap(":/icons/slab.svg")));
 	m_actToolSlab->setCheckable(true);
 	connect(m_actToolSlab, SIGNAL(toggled(bool)), this, SLOT(setToolSlab(bool)));
 
 	m_actToolLine = new QAction("Line", m_toolbarActionGroup);
-	m_actToolLine->setIcon(QIcon(QPixmap(":/icons/line.png")));
+	m_actToolLine->setIcon(QIcon(QPixmap(":/icons/line.svg")));
 	m_actToolLine->setCheckable(true);
 	connect(m_actToolLine, SIGNAL(toggled(bool)), this, SLOT(setToolLine(bool)));
 
 	m_actToolBox = new QAction("Box", m_toolbarActionGroup);
-	m_actToolBox->setIcon(QIcon(QPixmap(":/icons/box.png")));
+	m_actToolBox->setIcon(QIcon(QPixmap(":/icons/box.svg")));
 	m_actToolBox->setCheckable(true);
 	connect(m_actToolBox, SIGNAL(toggled(bool)), this, SLOT(setToolBox(bool)));
 
 	m_actToolExtrude = new QAction("Extrude", m_toolbarActionGroup);
-	m_actToolExtrude->setIcon(QIcon(QPixmap(":/icons/extrude.png")));
+	m_actToolExtrude->setIcon(QIcon(QPixmap(":/icons/extrude.svg")));
 	m_actToolExtrude->setCheckable(true);
 	connect(m_actToolExtrude, SIGNAL(toggled(bool)), this, SLOT(setToolExtrude(bool)));
 

@@ -40,17 +40,27 @@
 
 #include <qgl.h>
 
-#if defined(__APPLE__) && defined(__MACH__)
-#  include <OpenGL/glu.h>
-#else
-#  include <GL/glu.h>
-#endif
-
 #include <assert.h>
 
 #include <vector>
 
 using namespace Imath;
+
+static void gluPerspective( double fovy, double aspect,
+                     double zNear, double zFar )
+{
+  double xmin, xmax, ymin, ymax;
+
+  ymax = zNear * tan( fovy * M_PI / 360.0 );
+  ymin = -ymax;
+
+  xmin = ymin * aspect;
+  xmax = ymax * aspect;
+
+  glFrustum( xmin, xmax, ymin, ymax, zNear, zFar );
+}
+
+
 
 //-*****************************************************************************
 GLCamera::GLCamera()

@@ -67,14 +67,14 @@ LayersWidget::LayersWidget(QWidget* parent) : QWidget(parent)
     // New Layer
     QPushButton* buttonNew = new QPushButton(" New");
     buttonNew->setToolTip("New Layer");
-    buttonNew->setIcon(QIcon(QPixmap(":/icons/layerNew.png")));
+    buttonNew->setIcon(QIcon(QPixmap(":/icons/layerNew.svg")));
     connect(buttonNew, SIGNAL(pressed()),
             this,      SLOT(newLayer()));
 
     // Duplicate Layer
     QPushButton* buttonDup = new QPushButton("");
     buttonDup->setToolTip("Duplicate Layer");
-    buttonDup->setIcon(QIcon(QPixmap(":/icons/layerDuplicate.png")));
+    buttonDup->setIcon(QIcon(QPixmap(":/icons/layerDuplicate.svg")));
     buttonDup->setMaximumSize(50, 26);
     connect(buttonDup, SIGNAL(pressed()),
             this,      SLOT(duplicateSelected()));
@@ -82,7 +82,7 @@ LayersWidget::LayersWidget(QWidget* parent) : QWidget(parent)
     // Delete Layer
     QPushButton* buttonDel = new QPushButton("");
     buttonDel->setToolTip("Delete Layer");
-    buttonDel->setIcon(QIcon(QPixmap(":/icons/layerDelete.png")));
+    buttonDel->setIcon(QIcon(QPixmap(":/icons/layerDelete.svg")));
     buttonDel->setMaximumSize(50, 26);
     connect(buttonDel, SIGNAL(pressed()),
             this,      SLOT(deleteSelected()));

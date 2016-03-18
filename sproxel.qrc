@@ -1,19 +1,19 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-    <file>icons/eraser.png</file>
-    <file>icons/eyeDropper.png</file>
-    <file>icons/paintBucket.png</file>
-    <file>icons/pencil.png</file>
-    <file>icons/redo.png</file>
-    <file>icons/slab.png</file>
-    <file>icons/splat.png</file>
-    <file>icons/line.png</file>
-    <file>icons/undo.png</file>
-    <file>icons/layerEye.png</file>
-    <file>icons/layerNew.png</file>
-    <file>icons/layerDuplicate.png</file>
-    <file>icons/layerDelete.png</file>
-    <file>icons/box.png</file>
-    <file>icons/extrude.png</file>
+    <file>icons/eraser.svg</file>
+    <file>icons/eyeDropper.svg</file>
+    <file>icons/paintBucket.svg</file>
+    <file>icons/pencil.svg</file>
+    <file>icons/redo.svg</file>
+    <file>icons/slab.svg</file>
+    <file>icons/splat.svg</file>
+    <file>icons/line.svg</file>
+    <file>icons/undo.svg</file>
+    <file>icons/layerEye.svg</file>
+    <file>icons/layerNew.svg</file>
+    <file>icons/layerDuplicate.svg</file>
+    <file>icons/layerDelete.svg</file>
+    <file>icons/box.svg</file>
+    <file>icons/extrude.svg</file>
 </qresource>
 </RCC>

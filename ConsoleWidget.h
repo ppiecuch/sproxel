@@ -1,5 +1,6 @@
 #ifndef __SPROXEL_CONSOLE_WIDGET_H__
 #define __SPROXEL_CONSOLE_WIDGET_H__
+
 #ifdef SPROXEL_USE_PYTHON
 
 #include <QPlainTextEdit>
@@ -31,4 +32,5 @@ protected:
 };
 
 #endif // SPROXEL_USE_PYTHON
+
 #endif
