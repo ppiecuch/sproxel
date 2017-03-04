@@ -2,12 +2,16 @@
 
 #include <QImage>
 #include <QBuffer>
-#include "pyConsole.h"
-#include "script.h"
-#include "pyBindings.h"
+
 #include "VoxelGridGroup.h"
 #include "SproxelProject.h"
 #include "MainWindow.h"
+
+#include "pyConsole.h"
+#include "pyBindings.h"
+
+// (PP) include python headers last
+#include "script.h"
 
 
 //ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ//

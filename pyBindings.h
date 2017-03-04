@@ -2,9 +2,9 @@
 #define __SPROXEL_PY_BINDINGS_H__
 
 
-#include "script.h"
 #include "SproxelProject.h"
 #include "UndoManager.h"
+#include "script.h"
 
 
 PyObject* sprite_to_py(VoxelGridGroupPtr sprite);
@@ -18,4 +18,4 @@ PyObject* PySproxel_registerExporter(PyObject*, PyObject *arg);
 PyObject* PySproxel_unregisterExporter(PyObject*, PyObject *arg);
 
 
-#endif
+#endif // __SPROXEL_PY_BINDINGS_H__

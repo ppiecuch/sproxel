@@ -87,7 +87,7 @@ void init_script(const char *exe_path)
     code.append("\")\nsys.path.insert(0, \"");
     code.append(exe_dir.absolutePath()+"/../../Frameworks/common");
    #endif
-    code.append("\")\nprint 'sys.path:', sys.path\n");
+    code.append("\")\nprint 'Python ', sys.version\nprint 'sys.path:', sys.path\n");
     PyRun_SimpleString(code.toLocal8Bit().data());
   #endif
 
@@ -95,10 +95,8 @@ void init_script(const char *exe_path)
   glue=PyImport_ImportModule("PySide.SproxelGlue");
   if (!glue)
   {
-    pycon("Failed to import PySide.SproxelGlue");
-    #ifdef _WIN32
-      QMessageBox::critical(NULL, "Sproxel Error", "Failed to import PySide.SproxelGlue");
-    #endif
+    pycon("Failed to import PySide.SproxelGlue.");
+    pycon("Qt interface in Python scripts is not available.");
   }
   else
   {
@@ -120,6 +118,9 @@ void init_script(const char *exe_path)
     if (gotErrors) QMessageBox::critical(NULL, "Sproxel Error", "Some PySide.SproxelGlue methods are missing.");
   }
 
+  PyErr_Clear();
+
+  pycon("Importing sproxel_utils...");
   PyObject *mod=PyImport_ImportModule("sproxel_utils");
   if (!mod)
   {
@@ -154,6 +155,8 @@ void init_script(const char *exe_path)
 
     Py_DECREF(mod); mod=NULL;
   }
+
+  PyErr_Clear();
 }
 
 

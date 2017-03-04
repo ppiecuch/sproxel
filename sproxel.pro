@@ -3,12 +3,12 @@ QT += core gui opengl widgets svg
 
 TARGET = sproxel
 TEMPLATE = app
+CONFIG += c+11
 
 INCLUDEPATH += Imath
 
 macx: {
-	INCLUDEPATH += /System/Library/Frameworks/Python.framework/Versions/2.7/Headers
-	LIBS += -L/usr/lib -lpython2.7
+	LIBS += -L/usr/lib -lpython2.7 -I/usr/include/python2.7 -lobjc -framework Foundation
 	DEFINES += SPROXEL_USE_PYTHON
 }
 
@@ -40,10 +40,12 @@ SOURCES += \
     UndoManager.cpp \
     ImportExport.cpp \
     SproxelProject.cpp \
+    GenLand.cpp \
     script.cpp \
     pyConsole.cpp \
     pyBindings.cpp \
     pyImportExport.cpp \
+    util/macsupport.mm \
     Imath/ImathVec.cpp \
     Imath/ImathShear.cpp \
     Imath/ImathRandom.cpp \
@@ -75,6 +77,7 @@ HEADERS  += \
     pyBindings.h \
     ConsoleWidget.h \
     glue/classGlue.h \
+    util/macsupport.h \
     Imath/ImathVecAlgo.h \
     Imath/ImathVec.h \
     Imath/ImathSphere.h \
@@ -115,14 +118,16 @@ RESOURCES += \
 
 ICON = icons/sproxel.icns
 
-debug: DBG = dgb
+CONFIG(c++11): C11 = -c11
+CONFIG(debug, debug|release): DBG = dbg
 else: DBG = rel
 
-DESTDIR = workdir/$$DBG-$$[QMAKE_SPEC]/bin
-OBJECTS_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/obj
-MOC_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/ui
-UI_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/ui
-RCC_DIR = workdir/$$DBG-$$[QMAKE_SPEC]/ui
+DESTDIR = $$PWD/build-$$[QMAKE_SPEC]$$C11
+SUBDIR = $${TEMPLATE}$${TARGET}.$${DBG}
+OBJECTS_DIR = $$DESTDIR/$$SUBDIR/obj
+MOC_DIR = $$DESTDIR/$$SUBDIR/ui
+UI_DIR = $$DESTDIR/$$SUBDIR/ui
+RCC_DIR = $$DESTDIR/$$SUBDIR/ui
 
 
 # deployment options:

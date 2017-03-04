@@ -1,4 +1,5 @@
 import sproxel
+import sproxelConsole
 from zipfile import ZipFile, ZIP_DEFLATED
 import json
 import os, sys
@@ -6,6 +7,8 @@ import imp
 
 
 CUR_VERSION=1
+
+sproxelConsole.write("Loading sproxel_utils module...\n")
 
 
 def save_project(filename, proj):

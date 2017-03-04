@@ -10,6 +10,7 @@
 #include "ConsoleWidget.h"
 #include "pyConsole.h"
 #include "ImportExport.h"
+#include "util/macsupport.h"
 
 #include <QFileDialog>
 #include <QColorDialog>
@@ -315,8 +316,11 @@ MainWindow::MainWindow(const QString& initialFilename, QWidget *parent) :
 	get_python_console_widget()->toggleViewAction()->setChecked(false);
 #endif
 
+#ifdef Q_OS_MAC
+    MacSupport::addFullscreen(this);
+#endif
+
 	// ------ toolbar hookups
-	// Icons from the brilliant icon pack located at : http://pen-art.ru/
 	m_toolbarActionGroup = new QActionGroup(this);
 
 	m_actToolSplat = new QAction("Splat", m_toolbarActionGroup);
@@ -407,6 +411,9 @@ MainWindow::MainWindow(const QString& initialFilename, QWidget *parent) :
 
 	// Remaining verbosity
 	setWindowTitle(BASE_WINDOW_TITLE);
+#   ifdef Q_OS_MAC
+    if(!statusBar()->testAttribute(Qt::WA_MacNormalSize)) statusBar()->setAttribute(Qt::WA_MacSmallSize);
+#   endif
 	statusBar()->showMessage(tr("Ready"));
 
 	// Load up some settings
